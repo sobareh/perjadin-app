@@ -16,7 +16,15 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Penugasan::class);
             $table->foreignIdFor(Pegawai::class);
-            $table->foreignIdFor(Spd::class)->nullable();
+            $table->string('no_sppd')->nullable();
+            $table->date('tanggal_sppd')->nullable();
+            $table->double('harian')->nullable();
+            $table->integer('jumlah_hari')->nullable();
+            $table->double('penginapan')->nullable();
+            $table->double('tiket_transport')->nullable();
+            $table->double('dpr')->nullable();
+            $table->integer('status')->nullable();
+            $table->date('tanggal_pencairan')->nullable();
             $table->timestamps();
         });
     }

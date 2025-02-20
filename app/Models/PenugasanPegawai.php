@@ -5,15 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 use App\Models\{Spd, Pegawai, Penugasan};
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsTo, HasMany;
 
 
-class PenugasanPegawai extends Pivot
+class PenugasanPegawai extends Model
 {
     protected $table = 'penugasan_pegawai';
     
-    public function spd() : BelongsTo {
-        return $this->belongsTo(Spd::class);
+    public function spd() : HasMany {
+        return $this->hasMany(Spd::class);
     }
 
     public function penugasan() : BelongsTo {

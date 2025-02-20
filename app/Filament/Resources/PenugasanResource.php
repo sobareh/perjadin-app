@@ -2,49 +2,53 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\PenugasanResource\Pages;
-use App\Filament\Resources\PenugasanResource\RelationManagers;
-use App\Models\Penugasan;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
-use Filament\Forms\Components\Section as Section;
 use Filament\Tables;
+use Filament\Forms\Form;
+use App\Models\Penugasan;
 use Filament\Tables\Table;
+use Filament\Forms\Components\TextInput;
+use Filament\Resources\Resource;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\DatePicker;
 use Illuminate\Database\Eloquent\Builder;
+use Filament\Forms\Components\Section as Section;
+use App\Filament\Resources\PenugasanResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\PenugasanResource\RelationManagers\PegawaiRelationManager;
+use Filament\Tables\Columns\IconColumn;
 
 class PenugasanResource extends Resource
 {
     protected static ?string $model = Penugasan::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-briefcase';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('nama_st')
+                TextInput::make('nama_st')
                     ->required(),
                 Forms\Components\DatePicker::make('tanggal_st')
                     ->required(),
-                Forms\Components\TextInput::make('dasar_st')
+                TextInput::make('dasar_st')
                     ->required(),
-                Forms\Components\TextInput::make('perihal_dasar')
+                TextInput::make('perihal_dasar')
                     ->required(),
-                Forms\Components\DatePicker::make('tanggal_mulai')
+                DatePicker::make('tanggal_mulai')
                     ->required(),
-                Forms\Components\DatePicker::make('tanggal_selesai')
+                DatePicker::make('tanggal_selesai')
                     ->required(),
-                Forms\Components\TextInput::make('agenda')
+                TextInput::make('agenda')
                     ->required(),
-                Forms\Components\TextInput::make('jenis_st')
+                TextInput::make('jenis_st')
                     ->required(),
-                Forms\Components\TextInput::make('tujuan')
+                TextInput::make('tujuan')
                     ->required(),
-                Forms\Components\Section::make('Pegawai yang Ditugaskan')->schema([
-                    Forms\Components\Select::make('pegawai')->multiple()->relationship('pegawai', 'nama'),
-                ]),
+                // Forms\Components\Section::make('Pegawai yang Ditugaskan')->schema([
+                //     Forms\Components\Select::make('pegawai')->multiple()->relationship('pegawai', 'nama'),
+                // ]),
             ]);
     }
 
@@ -52,21 +56,20 @@ class PenugasanResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('nama_st')
+                TextColumn::make('nama_st')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('tanggal_mulai')
+                TextColumn::make('tanggal_mulai')
                     ->date()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('tanggal_selesai')
+                TextColumn::make('tanggal_selesai')
                     ->date()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('tujuan')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('created_at')
+                TextColumn::make('tujuan')->badge(),
+                TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
+                TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -88,7 +91,7 @@ class PenugasanResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            PegawaiRelationManager::class,
         ];
     }
 

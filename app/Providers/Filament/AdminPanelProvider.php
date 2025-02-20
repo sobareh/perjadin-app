@@ -25,11 +25,15 @@ class AdminPanelProvider extends PanelProvider
         return $panel
             ->default()
             ->id('admin')
-            ->path('admin')
+            ->path('perjadin')
             ->login()
+            ->profile()
+            ->brandLogo(asset('images/logo-djp.svg'))
+            ->brandLogoHeight('3.8rem')
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => '#212C5F',
             ])
+            ->sidebarCollapsibleOnDesktop()
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([

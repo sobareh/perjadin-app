@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\PenugasanStatus;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\PenugasanPegawai;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -11,13 +12,15 @@ use Illuminate\Database\Eloquent\Builder;
 
 class Penugasan extends Model
 {
-    public function pegawai() 
-    {
-        return $this->belongsToMany(Pegawai::class, 'penugasan_pegawai')->withPivot(['id'])->withTimestamps();
-    }
+    protected $casts = [
+        'tujuan' => PenugasanStatus::class,
+    ];
 
-    public function spd() {
-        return $this->belongsToMany(Spd::class, 'penugasan_pegawai')->withTimeStamps();
+    public function pegawai()
+    {
+        return $this->belongsToMany(Pegawai::class, 'penugasan_pegawai')->withPivot([
+            'id', 'no_sppd', 'tanggal_sppd', 'harian', 'penginapan','dpr', 'status'
+            ])->withTimestamps();
     }
 
     public function penugasanPegawai(): HasMany
