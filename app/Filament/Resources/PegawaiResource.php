@@ -19,6 +19,8 @@ class PegawaiResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-users';
 
+    protected static ?string $navigationGroup = 'Perjalanan Dinas';
+
     public static function form(Form $form): Form
     {
         return $form

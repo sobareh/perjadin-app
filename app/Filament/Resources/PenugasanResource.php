@@ -24,6 +24,8 @@ class PenugasanResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-briefcase';
 
+    protected static ?string $navigationGroup = 'Perjalanan Dinas';
+
     public static function form(Form $form): Form
     {
         return $form
