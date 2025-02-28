@@ -27,7 +27,8 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('perjadin')
             ->login(Login::class)
-            ->darkMode(false)            ->brandLogo(asset('images/logo-djp.svg'))
+            ->darkMode(false)
+            ->brandLogo(asset('images/logo-djp.svg'))
             ->brandLogoHeight('3.8rem')
             ->colors([
                 'primary' => '#212C5F',
