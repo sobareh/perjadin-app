@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'name' => 'Nurlaili Ramadhani',
-                'username' => 'admin140',
+                'username' => '815100227',
                 'password' => Hash::make('admin140'),
             ],
         );
