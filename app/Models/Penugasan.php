@@ -8,13 +8,11 @@ use App\Models\PenugasanPegawai;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Builder;
 
-
-
 class Penugasan extends Model
 {
-    protected $casts = [
-        'tujuan' => PenugasanStatus::class,
-    ];
+    // protected $casts = [
+    //     'tujuan' => PenugasanStatus::class,
+    // ];
 
     public function pegawai()
     {

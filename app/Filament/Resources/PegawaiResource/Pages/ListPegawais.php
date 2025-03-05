@@ -10,6 +10,8 @@ class ListPegawais extends ListRecords
 {
     protected static string $resource = PegawaiResource::class;
 
+    protected static ?string $title = 'Daftar Pegawai';
+
     protected function getHeaderActions(): array
     {
         return [

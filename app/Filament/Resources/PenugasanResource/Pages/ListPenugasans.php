@@ -10,6 +10,8 @@ class ListPenugasans extends ListRecords
 {
     protected static string $resource = PenugasanResource::class;
 
+    protected static ?string $title = 'Daftar Penugasan Pegawai';
+
     protected function getHeaderActions(): array
     {
         return [
